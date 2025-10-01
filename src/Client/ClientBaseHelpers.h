@@ -6,6 +6,9 @@
 
 #if USE_REPLXX
 #   include <Client/ReplxxLineReader.h>
+#if USE_READLINE
+#   include <Client/ReadlineLineReader.h>
+#endif
 #endif
 
 

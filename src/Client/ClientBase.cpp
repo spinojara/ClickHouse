@@ -3519,7 +3519,11 @@ void ClientBase::runInteractive()
         .err_fd = stderr_fd,
     };
 
+#if USE_READLINE
+    lr = std::make_unique<ReadlineLineReader>(std::move(options));
+#else
     lr = std::make_unique<ReplxxLineReader>(std::move(options));
+#endif
 #else
     lr = LineReader(
         history_file,
@@ -3574,6 +3578,9 @@ void ClientBase::runInteractive()
 
         if (input.empty())
             break;
+
+	std::cout << "got: " << input << std::endl;
+	continue;
 
         has_vertical_output_suffix = false;
         if (input.ends_with("\\G") || input.ends_with("\\G;"))
