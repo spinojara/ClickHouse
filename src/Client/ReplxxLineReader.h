@@ -61,6 +61,9 @@ private:
 
     std::string editor;
     bool overwrite_mode = false;
+
+    uint64_t vimbuffer = 0;
+    uint64_t vimbufferinner = 0;
 };
 
 }
